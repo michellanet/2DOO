@@ -12,9 +12,276 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+
+    <ViewFlipper
+        android:id="@+id/restaurantFlipper"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+       >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageCardView"
+            android:layout_marginTop="10dp"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            >
+
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                android:src="@drawable/rest1"
+                android:scaleType="centerCrop"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/restName"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Peking Duck Restaurant"
+                app:layout_constraintTop_toBottomOf="@+id/imageCardView"
+                app:layout_constraintStart_toStartOf="@id/imageCardView"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              app:layout_constraintTop_toBottomOf="@id/imageCardView"
+                app:layout_constraintEnd_toEndOf="@id/imageCardView"
+                android:textSize="22sp"
+                android:text="$$$$"/>
+
+        <TextView
+            android:id="@+id/restDescription"
+            app:layout_constraintStart_toStartOf="@id/imageCardView"
+            app:layout_constraintTop_toBottomOf="@id/restName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chinese Restaurant - 3Km - Open"/>
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/ratingBar"
+            app:layout_constraintStart_toStartOf="@id/imageCardView"
+            app:layout_constraintTop_toBottomOf="@id/restDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mrb_fillBackgroundStars="true"
+            style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="140dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/imageCardView"
+            android:layout_marginBottom="25dp"
+            >
+
+            <ImageButton
+                android:id="@+id/thumbDown"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#f00"
+                android:src="@drawable/thumb_down"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="140dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/imageCardView"
+            android:layout_marginBottom="25dp"
+            >
+
+            <ImageButton
+                android:id="@+id/thumbUp"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#0f0"
+                android:src="@drawable/thumb_up"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:cardCornerRadius="140dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="25dp"
+            >
+
+            <ImageButton
+                android:id="@+id/infoButton"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:backgroundTint="#ff0"
+                android:src="@drawable/error_outline"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--Next Restaurant-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imageCardView2"
+                android:layout_marginTop="10dp"
+                android:layout_width="350dp"
+                android:layout_height="250dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                >
+
+                <ImageView
+                    android:layout_width="350dp"
+                    android:layout_height="250dp"
+                    android:src="@drawable/rest2"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/restName2"
+                android:textSize="22sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Shushi Bar"
+                app:layout_constraintTop_toBottomOf="@+id/imageCardView2"
+                app:layout_constraintStart_toStartOf="@id/imageCardView2"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/imageCardView2"
+                app:layout_constraintEnd_toEndOf="@id/imageCardView2"
+                android:textSize="22sp"
+                android:text="$$$"/>
+
+            <TextView
+                android:id="@+id/restDescription2"
+                app:layout_constraintStart_toStartOf="@id/imageCardView2"
+                app:layout_constraintTop_toBottomOf="@id/restName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shushi Restaurant - 1Km - Open"/>
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/ratingBar2"
+                app:layout_constraintStart_toStartOf="@id/imageCardView2"
+                app:layout_constraintTop_toBottomOf="@id/restDescription2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mrb_fillBackgroundStars="true"
+                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="140dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/imageCardView2"
+                android:layout_marginBottom="25dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/thumbDown2"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="#f00"
+                    android:src="@drawable/thumb_down"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="140dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/imageCardView2"
+                android:layout_marginBottom="25dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/thumbUp2"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="#0f0"
+                    android:src="@drawable/thumb_up"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="140dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="25dp"
+                >
+
+                <ImageButton
+                    android:id="@+id/infoButton2"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="#ff0"
+                    android:src="@drawable/error_outline"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ViewFlipper>
+
 </RelativeLayout>
