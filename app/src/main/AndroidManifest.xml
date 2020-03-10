@@ -3,7 +3,7 @@
     package="com.mbwasi.a2docapstone">
 
     //Do not remove, this is used for Category page!!
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:allowBackup="true"
