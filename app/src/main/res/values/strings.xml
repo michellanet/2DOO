@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">2DOO APP</string>
+    <string name="app_name">2DOO</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="access_token">pk.eyJ1IjoibHVjYXNuZ3V5ZW4iLCJhIjoiY2s3ZHJ1djllMDEzczNsbXhnN3VrMjFvYyJ9.iIOksEiXLf0Yw1cemIkoiQ</string>
 </resources>
