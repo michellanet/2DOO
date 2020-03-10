@@ -81,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
 
     private void navigate(final int itemId) {
-
+        Log.i(TAG, "Navigate");
 
         switch (itemId) {
             case 1://placeholder

@@ -32,7 +32,7 @@
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
-
+        <include layout="@layout/content_main" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -43,5 +43,5 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer"/>
 
-    <include layout="@layout/content_main" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
