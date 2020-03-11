@@ -85,70 +85,77 @@
             style="@style/Widget.MaterialRatingBar.RatingBar" />
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:cardCornerRadius="140dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/imageCardView"
-            android:layout_marginBottom="25dp"
-            >
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            app:cardCornerRadius="140dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@id/imageCardView"-->
+<!--            android:layout_marginBottom="25dp"-->
+<!--            >-->
 
             <ImageButton
                 android:id="@+id/thumbDown"
-                android:scaleX="2"
-                android:scaleY="2"
+
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:backgroundTint="#E43f3f"
                 android:src="@drawable/thumb_down"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/imageCardView"
+                android:layout_marginBottom="25dp"
                 />
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:cardCornerRadius="140dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/imageCardView"
-            android:layout_marginBottom="25dp"
-            >
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            app:cardCornerRadius="140dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/imageCardView"-->
+<!--            android:layout_marginBottom="25dp"-->
+<!--            >-->
 
             <ImageButton
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/imageCardView"
+                android:layout_marginBottom="25dp"
                 android:id="@+id/thumbUp"
-                android:scaleX="2"
-                android:scaleY="2"
+
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:backgroundTint="#42f57b"
                 android:src="@drawable/thumb_up"
                 />
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:cardCornerRadius="140dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="25dp"
-            >
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="70dp"-->
+<!--            app:cardCornerRadius="140dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_marginBottom="25dp"-->
+<!--            >-->
 
             <ImageButton
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="25dp"
                 android:id="@+id/infoButton"
                 android:onClick="infoPressed"
-                android:scaleX="2"
-                android:scaleY="2"
+
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:backgroundTint="#4281f5"
                 android:src="@drawable/error_outline"
                 />
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
