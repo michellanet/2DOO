@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -25,7 +25,7 @@
             android:layout_weight="2"
             android:gravity="center"
             android:src="@drawable/logo"
-            android:textSize="50dp">
+            android:layout_marginTop="25dp">
 
         </ImageView>
 
@@ -35,10 +35,9 @@
 
     <LinearLayout
         android:id="@+id/info"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo">
@@ -48,11 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:hint="Enter Username Here"
+            android:textSize="20dp"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white">
+            android:textColorHint="@android:color/white"
+            android:layout_marginTop="45dp">
 
         </EditText>
 
@@ -60,11 +63,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:gravity="center"
             android:hint="Enter Password Here"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white">
+            android:textColorHint="@android:color/white"
+            android:textSize="20dp">
 
         </EditText>
 
@@ -72,11 +78,12 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="75dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="75dp"
             android:onClick="loginPressed"
             android:text="Login"
-
-            >
+            android:textSize="18dp">
 
         </Button>
 
@@ -86,7 +93,10 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="Forgot Password"
-            android:textColor="@android:color/white">
+            android:textColor="@android:color/black"
+            android:textSize="17dp"
+            android:textStyle="italic"
+            >
 
         </TextView>
 
@@ -94,11 +104,12 @@
             android:id="@+id/createAccountTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:onClick="registerPressed"
             android:text="Create Account"
-            android:textColor="@android:color/white">
+            android:textSize="17dp"
+            android:textStyle="italic">
 
         </TextView>
 
