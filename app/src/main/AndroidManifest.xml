@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mbwasi.a2docapstone">
 
-    //Do not remove, this is used for Category page!!
+    <!--WRITE COMMENTS LIKE THIS IN XML FILES OR SYNC GRADLE FAILS!-->
+
+    <!--Allows internet access for android app -->
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
-    // Use for maps
+    <!--Allows app to access location-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
 
     <application
@@ -17,14 +19,14 @@
         android:theme="@style/TwoDOOStyle">
         <activity android:name=".CategoryActivity"></activity>
         <activity android:name=".MapActivity">
+
+        </activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".LoginActivity">
-
         </activity>
         <activity
             android:name=".MainActivity"
