@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:id="@+id/category_parent"
-    android:outlineAmbientShadowColor="@android:color/white">
+    android:background="@drawable/category_layout_background">
+
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/Pic"
         android:src="@mipmap/ic_launcher_round"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp">
     </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
@@ -31,10 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="100dp">
+        android:layout_marginRight="100dp"
+        android:buttonTint="@android:color/white">
 
     </CheckBox>
-
-
-
 </RelativeLayout>
