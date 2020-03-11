@@ -54,6 +54,7 @@
                 android:text="Peking Duck Restaurant"
                 app:layout_constraintTop_toBottomOf="@+id/imageCardView"
                 app:layout_constraintStart_toStartOf="@id/imageCardView"
+                android:textColor="@android:color/black"
 
                 />
             <TextView
@@ -62,7 +63,8 @@
               app:layout_constraintTop_toBottomOf="@id/imageCardView"
                 app:layout_constraintEnd_toEndOf="@id/imageCardView"
                 android:textSize="22sp"
-                android:text="$$$$"/>
+                android:text="$$$$"
+                android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/restDescription"
@@ -70,7 +72,8 @@
             app:layout_constraintTop_toBottomOf="@id/restName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chinese Restaurant - 3Km - Open"/>
+            android:text="Chinese Restaurant - 3Km - Open"
+            android:textColor="#4287f5"/>
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/ratingBar"
@@ -97,7 +100,7 @@
                 android:scaleY="2"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:backgroundTint="#f00"
+                android:backgroundTint="#E43f3f"
                 android:src="@drawable/thumb_down"
                 />
 
@@ -118,7 +121,7 @@
                 android:scaleY="2"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:backgroundTint="#0f0"
+                android:backgroundTint="#42f57b"
                 android:src="@drawable/thumb_up"
                 />
 
@@ -141,7 +144,7 @@
                 android:scaleY="2"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:backgroundTint="#ff0"
+                android:backgroundTint="#4281f5"
                 android:src="@drawable/error_outline"
                 />
 
