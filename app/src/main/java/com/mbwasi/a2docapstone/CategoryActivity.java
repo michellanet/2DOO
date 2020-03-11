@@ -44,6 +44,9 @@ public class CategoryActivity extends AppCompatActivity {
         catPics.add("https://cdn.countryflags.com/thumbs/japan/flag-800.png");
         catNames.add("Japanese");
 
+        catPics.add("https://cdn.countryflags.com/thumbs/brazil/flag-800.png");
+        catNames.add("Brazilian BBQ");
+
         initRecycler();
     }
 
