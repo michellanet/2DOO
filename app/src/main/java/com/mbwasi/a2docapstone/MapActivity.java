@@ -3,6 +3,10 @@ package com.mbwasi.a2docapstone;
 import android.os.Bundle;
 
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -41,6 +45,19 @@ public class MapActivity extends AppCompatActivity {
 
                     }
                 });
+
+                MarkerOptions options = new MarkerOptions();
+                options.title("Current position");
+                options.position(new LatLng(48.1386, 11.57603));
+                mapboxMap.addMarker(options);
+
+                CameraPosition position = new CameraPosition.Builder()
+                        .target(new LatLng(48.1386, 11.57603))
+                        .zoom(12)
+                        .tilt(20)
+                        .build();
+
+                mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(position), 1000);
             }
         });
     }
