@@ -6,27 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class LoginActivity extends AppCompatActivity {
+public class ForgotPassword_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_forgot_password_);
     }
 
-    public void loginPressed(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+    public void resetClicked(View view) {
     }
-
 
     public void registerPressed(View view) {
         Intent intent = new Intent(this,RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    public void forgotPressed(View view) {
-        Intent intent = new Intent(this, ForgotPassword_Activity.class);
         startActivity(intent);
     }
 }
