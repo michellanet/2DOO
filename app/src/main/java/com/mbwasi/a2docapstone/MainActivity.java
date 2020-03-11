@@ -3,6 +3,7 @@ package com.mbwasi.a2docapstone;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -12,6 +13,7 @@ import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.ViewFlipper;
 
@@ -32,6 +34,9 @@ public class MainActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageButton infoButton =findViewById(R.id.infoButton);
+
 
         RatingBar rb  = findViewById(R.id.ratingBar);
         rb.setIsIndicator(true);
@@ -89,6 +94,11 @@ public class MainActivity extends BaseActivity {
 
             }
         };
+    }
+
+    public void infoPressed(View view) {
+        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+        startActivity(intent);
     }
 
     //Class for Swipe Gesture
