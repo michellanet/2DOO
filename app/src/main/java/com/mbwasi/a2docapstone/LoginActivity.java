@@ -51,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
 //        });
 //        request.get("http://2doo.ca/api/login");
 //////////////
+
+        //HTTP POST request
         HttpRequest request = new HttpRequest();
         request.setOnResponseListener(new HttpRequest.OnResponseListener() {
             @Override
@@ -63,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject jsonObject = response.toJSONObject().getJSONObject("success");
                         String token =jsonObject.getString("token");
                         Log.e("LoginActivity", "Token: "+token);
-                        if(TokenUtils.storeLoginToken("Token string goes here",getApplicationContext())){
+                        
+                        if(TokenUtils.storeLoginToken(token,getApplicationContext())){
                             //If token was succesfully stored continue to main page
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
@@ -71,14 +74,18 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
                 }
+                //UNATHORIZED, wront user/pass or doesnt exist.
                 else if (response.code == HttpResponse.HTTP_UNAUTHORIZED) {
                     Toast.makeText(LoginActivity.this, "Invalid Login", Toast.LENGTH_LONG).show();
                 }
+                //Any other HTTP status
+                else{
+                    Toast.makeText(LoginActivity.this, "Login Error", Toast.LENGTH_LONG).show();
+                }
             }
         });
+        //IF request fails
         request.setOnErrorListener(new HttpRequest.OnErrorListener() {
             @Override
             public void onError(HttpError error) {
@@ -97,10 +104,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         request.post("http://2doo.ca/api/login", json);
-
-
-
-
+        //To fetch the token in later activities, return null if there is no token.
+      ///  TokenUtils.getLoginToken(getApplicationContext());
     }
 
 

@@ -22,7 +22,7 @@ public abstract class TokenUtils {
         }
     }
 
-    public String getLoginToken(Context context){
+    static public String getLoginToken(Context context){
         SharedPreferences pref = context.getSharedPreferences(DOO_PREFS, 0); // 0 - for private mode
         return pref.getString(LOGIN_TOKEN,null);
     }
