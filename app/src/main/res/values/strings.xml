@@ -3,4 +3,21 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="access_token">pk.eyJ1IjoibHVjYXNuZ3V5ZW4iLCJhIjoiY2s3ZHJ1djllMDEzczNsbXhnN3VrMjFvYyJ9.iIOksEiXLf0Yw1cemIkoiQ</string>
+
+    <!--Michaels part-->
+    <string name="about_us">
+          The idea of 2DOO is to give people the ability to have an interactive experience in determining a restaurant, which we will extend to tourist package deals in the future.\n \n The idea came from the issue that other websites and applications do not give the user an interactive experience, instead such applications feel like they are just a container of information. We are also filling the void that most of these applications and websites are not being used on a daily basis.\n \n The idea of implementing our application into a social media for discovering restaurants, where users can also interact with each other, can be beneficial as we are targeting users from adolescents to adults.
+    </string>
+    <string-array name="partySize">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

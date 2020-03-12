@@ -13,19 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TwoDOOStyle">
-        <activity android:name=".ForgotPassword_Activity"
-            android:screenOrientation="portrait"
+        <activity android:name=".About"></activity>
+        <activity
+            android:name=".ForgotPassword_Activity"
             android:configChanges="keyboardHidden|orientation"
-            ></activity>
-        <activity android:name=".CategoryActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CategoryActivity"
             android:configChanges="keyboardHidden|orientation"
-            />
-        <activity android:name=".MapActivity"></activity>
-        <activity android:name=".LoginActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MapActivity" />
+        <activity
+            android:name=".LoginActivity"
             android:configChanges="keyboardHidden|orientation"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,14 +35,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"
-            />
-        <activity android:name=".RegisterActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegisterActivity"
             android:configChanges="keyboardHidden|orientation"
-            />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
