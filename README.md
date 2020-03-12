@@ -4,6 +4,7 @@
 
 2Doo is a restaurant discovery and recommendation App.
 
+![Image description](https://github.com/matale/AndroidProjectHumber/blob/master/screenshot_small.png?raw=true)
 ## Developers
 
  - Luan Nguyen 
