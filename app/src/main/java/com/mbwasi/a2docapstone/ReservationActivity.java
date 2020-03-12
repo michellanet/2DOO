@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -80,6 +81,11 @@ public class ReservationActivity extends BaseActivity {
         }, hour, minute,android.text.format.DateFormat.is24HourFormat(ReservationActivity.this)
         );
         timePickerDialog.show();
+    }
+    public void makeReservation(View view) {
+        Toast.makeText(this, "Table for Party of: " + partySize.getSelectedItem().toString()
+                + "\n reserved Date: " + dateInput.getText()
+                + "\n reserved Time: " + timeInput.getText(), Toast.LENGTH_SHORT).show();
     }
 
 
