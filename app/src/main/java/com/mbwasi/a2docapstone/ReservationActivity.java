@@ -25,6 +25,7 @@ public class ReservationActivity extends BaseActivity {
     private Spinner partySize;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TextView timeInput;
+    Calendar cal = Calendar.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,31 +34,31 @@ public class ReservationActivity extends BaseActivity {
         dateInput = (TextView) findViewById(R.id.date);
         partySize = (Spinner) findViewById(R.id.partySize);
         timeInput = (TextView) findViewById(R.id.time);
+
     }
 
     public void calPopup(View view){
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(
-                ReservationActivity.this,
-                R.style.DialogTheme,
-                mDateSetListener,
-                year,month,day);
-        dialog.show();
+// Process to get Current Date
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
 
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-                //Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+        // Launch Date Picker Dialog
+        DatePickerDialog dpd = new DatePickerDialog(ReservationActivity.this,
+                new DatePickerDialog.OnDateSetListener() {
 
-                String date = month + "/" + day + "/" + year;
-                dateInput.setText(date);
-            }
-        };
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Display Selected date in textbox
+                        dateInput.setText( (monthOfYear + 1) + "/"
+                                + dayOfMonth + "/" + year);
+
+                    }
+                }, year, month, day);
+        dpd.show();
     }
 
     public void timePopup(View view){
