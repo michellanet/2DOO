@@ -130,12 +130,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 //                startActivity(randomQuoteIntent);;
 //                break;
 
-//            case R.id.drawer_item_about:
+            case R.id.drawer_item_about:
 
-//                Log.i(TAG, "About Nav");
-//                Intent aboutIntent = new Intent(getApplicationContext(), AboutActivity.class);
-//                startActivity(aboutIntent);
-//                break;
+               Log.i(TAG, "About Nav");
+              Intent aboutIntent = new Intent(getApplicationContext(), About.class);
+              startActivity(aboutIntent);
+              break;
 
 //            case R.id.drawer_item_settings:
 
