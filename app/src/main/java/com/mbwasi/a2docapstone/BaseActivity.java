@@ -89,7 +89,23 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
               startActivity(intent);
                 break;
-      //      case R.id.drawer_item_all_quotes:
+
+            case R.id.drawer_item_reserve:
+
+                Log.i(TAG, "Reserve Nav");
+                Intent reserveIntent = new Intent(getApplicationContext(), ReservationActivity.class);
+                startActivity(reserveIntent);
+                break;
+
+            case R.id.drawer_item_about:
+
+                Log.i(TAG, "About Nav");
+                Intent aboutIntent = new Intent(getApplicationContext(), About.class);
+                startActivity(aboutIntent);
+                break;
+
+
+            //      case R.id.drawer_item_all_quotes:
 
 
 //                Intent AllQuotesIntent = new Intent(getApplicationContext(), AllQuotesActivity.class);
@@ -128,13 +144,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 //                Log.i(TAG, "Random Nav");
 //                Intent randomQuoteIntent = new Intent(getApplicationContext(), ViewQuoteActivity.class);
 //                startActivity(randomQuoteIntent);;
-//                break;
-
-//            case R.id.drawer_item_about:
-
-//                Log.i(TAG, "About Nav");
-//                Intent aboutIntent = new Intent(getApplicationContext(), AboutActivity.class);
-//                startActivity(aboutIntent);
 //                break;
 
 //            case R.id.drawer_item_settings:

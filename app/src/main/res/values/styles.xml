@@ -26,6 +26,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Michaels: Reservation Theme -->
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+    </style>
+
 
 
 </resources>

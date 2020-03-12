@@ -20,6 +20,11 @@
             android:title="Favorite Restaurants"/>
 
         <item
+            android:id="@+id/drawer_item_reserve"
+            android:icon="@drawable/reserve"
+            android:title="Create Reservation"/>
+
+        <item
             android:id="@+id/drawer_item_history"
             android:icon="@drawable/ic_history_24px"
             android:title="Reservation History"/>
