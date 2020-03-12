@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/TwoDOOStyle">
         <activity android:name=".ReservationActivity"></activity>
-        <activity android:name=".About" />
+        <activity android:name=".About"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".ForgotPassword_Activity"
             android:configChanges="keyboardHidden|orientation"
