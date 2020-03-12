@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TwoDOOStyle">
-        <activity android:name=".About"></activity>
+        <activity android:name=".ReservationActivity"></activity>
+        <activity android:name=".About" />
         <activity
             android:name=".ForgotPassword_Activity"
             android:configChanges="keyboardHidden|orientation"
