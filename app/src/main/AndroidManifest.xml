@@ -24,7 +24,9 @@
         <activity
             android:name=".CategoryActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".MapActivity" />
         <activity
             android:name=".LoginActivity"
