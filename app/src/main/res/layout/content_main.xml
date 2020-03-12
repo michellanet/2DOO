@@ -27,21 +27,22 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imageCardView"
-            android:layout_marginTop="10dp"
             android:layout_width="350dp"
             android:layout_height="250dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="5dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
-            >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:layout_width="350dp"
                 android:layout_height="250dp"
-                android:src="@drawable/rest1"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/rest1" />
 
         </androidx.cardview.widget.CardView>
 
@@ -94,17 +95,27 @@
 <!--            android:layout_marginBottom="25dp"-->
 <!--            >-->
 
-            <ImageButton
-                android:id="@+id/thumbDown"
+<!--            <ImageButton-->
+<!--                android:id="@+id/thumbDown"-->
 
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:backgroundTint="#E43f3f"
-                android:src="@drawable/thumb_down"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/imageCardView"
-                android:layout_marginBottom="25dp"
-                />
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:backgroundTint="#E43f3f"-->
+<!--                android:src="@drawable/thumb_down"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="@id/imageCardView"-->
+<!--                android:layout_marginBottom="25dp"-->
+<!--                />-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/imageCardView"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/thumb_down"/>
 
 <!--        </androidx.cardview.widget.CardView>-->
 
@@ -117,17 +128,28 @@
 <!--            android:layout_marginBottom="25dp"-->
 <!--            >-->
 
-            <ImageButton
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/imageCardView"
-                android:layout_marginBottom="25dp"
-                android:id="@+id/thumbUp"
+<!--            <ImageButton-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/imageCardView"-->
+<!--                android:layout_marginBottom="25dp"-->
+<!--                android:id="@+id/thumbUp"-->
 
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:backgroundTint="#42f57b"
-                android:src="@drawable/thumb_up"
-                />
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:backgroundTint="#42f57b"-->
+<!--                android:src="@drawable/thumb_up"-->
+<!--                />-->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/thumbDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:backgroundTint="#42f57b"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/imageCardView"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/thumb_up"/>
 
 <!--        </androidx.cardview.widget.CardView>-->
 
@@ -141,19 +163,32 @@
 <!--            android:layout_marginBottom="25dp"-->
 <!--            >-->
 
-            <ImageButton
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="25dp"
-                android:id="@+id/infoButton"
-                android:onClick="infoPressed"
+<!--            <ImageButton-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                android:layout_marginBottom="25dp"-->
+<!--                android:id="@+id/infoButton"-->
+<!--                android:onClick="infoPressed"-->
 
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:backgroundTint="#4281f5"
-                android:src="@drawable/error_outline"
-                />
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:backgroundTint="#4281f5"-->
+<!--                android:src="@drawable/error_outline"-->
+<!--                />-->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/infoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:backgroundTint="#4281f5"
+            android:onClick="infoPressed"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/error_outline"/>
 
 <!--        </androidx.cardview.widget.CardView>-->
 
