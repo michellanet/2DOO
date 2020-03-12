@@ -18,7 +18,7 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 
-public class ReservationActivity extends AppCompatActivity {
+public class ReservationActivity extends BaseActivity {
 
     private TextView dateInput;
     private Spinner partySize;
@@ -26,7 +26,7 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView timeInput;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
         dateInput = (TextView) findViewById(R.id.date);

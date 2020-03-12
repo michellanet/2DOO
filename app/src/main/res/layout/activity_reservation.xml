@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#fffff2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/AppBarLayout"
+            android:layout_alignParentTop="true"
+            android:theme="@style/AppTheme"
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#E43f3f"
+                app:popupTheme="@style/AppTheme"
+                app:layout_scrollFlags="scroll|enterAlways"
+
+                >
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+<!--START-->
+<androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="10dp"
-    tools:context=".ReservationActivity"
+    android:paddingLeft="16dp"
+    android:paddingTop="50dp"
+
     >
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -61,10 +95,10 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="?android:selectableItemBackgroundBorderless"
             android:padding="3dp"
             android:onClick="calPopup"
-            android:src="@android:drawable/ic_menu_my_calendar"/>
+            android:src="@drawable/calendar_icon"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
@@ -93,10 +127,10 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="?android:selectableItemBackgroundBorderless"
             android:padding="3dp"
             android:onClick="timePopup"
-            android:src="@android:drawable/ic_menu_recent_history" />
+            android:src="@drawable/clock_icon" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
@@ -106,11 +140,12 @@
         android:layout_marginTop="30dp"
         android:layout_weight=".8"
         android:textSize="24sp"
+        android:backgroundTint="#42f57b"
         android:text="FIND A TABLE"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
+
+        />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -118,3 +153,16 @@
         android:layout_weight="1"></androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer"/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
