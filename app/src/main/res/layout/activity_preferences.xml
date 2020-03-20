@@ -19,13 +19,17 @@
 
 
             <TextView
+                android:id="@+id/tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Select Distance to Adjust"
-                android:gravity="center">
+                android:text="5km"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_marginBottom="15dp">
             </TextView>
         <SeekBar
-            android:layout_width="wrap_content"
+            android:id="@+id/sb"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
@@ -33,11 +37,24 @@
         </SeekBar>
 
         <ProgressBar
-            android:layout_width="wrap_content"
+            android:id="@+id/pb"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyleHorizontal">
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_marginBottom="15dp">
 
         </ProgressBar>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save Disatance"
+            android:layout_gravity="center"
+            android:onClick="saveDistance">
+
+        </Button>
 
 
 
