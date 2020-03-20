@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -17,6 +18,10 @@ import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
 public class LoginActivity extends AppCompatActivity {
+
+    EditText username;
+    EditText password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,12 @@ public class LoginActivity extends AppCompatActivity {
 //        });
 //        request.get("http://2doo.ca/api/login");
 //////////////
+
+
+
+        username  = (EditText)findViewById(R.id.username);
+        password  = (EditText)findViewById(R.id.password);
+
 
         //HTTP POST request
         HttpRequest request = new HttpRequest();
@@ -98,8 +109,8 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject json;
         try {
             json = new JSONObject();
-            json.put("email", "romanmbwasi@gmail.com");
-            json.put("password", "password");
+            json.put("email", username);
+            json.put("password", password);
         } catch (JSONException ignore) {
             return;
         }
