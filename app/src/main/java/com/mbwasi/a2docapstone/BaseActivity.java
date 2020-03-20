@@ -104,7 +104,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                 startActivity(aboutIntent);
                 break;
 
+            case R.id.drawer_item_history:
 
+                Log.i(TAG, "Reserve History Nav");
+                Intent historyIntent = new Intent(getApplicationContext(), ReservationListActivity.class);
+                startActivity(historyIntent);
+                break;
             //      case R.id.drawer_item_all_quotes:
 
 
