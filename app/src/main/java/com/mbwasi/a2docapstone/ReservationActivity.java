@@ -2,6 +2,7 @@ package com.mbwasi.a2docapstone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.app.DatePickerDialog;
@@ -87,6 +88,8 @@ public class ReservationActivity extends BaseActivity {
         Toast.makeText(this, "Table for Party of: " + partySize.getSelectedItem().toString()
                 + "\n reserved Date: " + dateInput.getText()
                 + "\n reserved Time: " + timeInput.getText(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ReservationListActivity.class);
+        startActivity(intent);
     }
 
 

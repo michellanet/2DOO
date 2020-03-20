@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
     android:layout_margin="16dp"
+    android:background="@color/TwoDOORed"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:textColor="@color/white"
         android:hint="Table of"
         android:textAppearance="?attr/textAppearanceListItem" />
 
@@ -19,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:textColor="@color/white"
         android:hint="Reserved Date"
         android:textAppearance="?attr/textAppearanceListItem" />
 
@@ -27,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="@color/white"
         android:hint="Reserved Time"
         android:textAppearance="?attr/textAppearanceListItem" />
 
@@ -35,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="@color/white"
         android:hint="Conformation Number"
         android:textAppearance="?attr/textAppearanceListItem" />
 
@@ -43,5 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:textColor="@color/TwoDOORed"
         android:text="Cancel Reservation"></Button>
 </LinearLayout>

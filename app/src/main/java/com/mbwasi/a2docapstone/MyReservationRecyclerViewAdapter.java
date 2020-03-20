@@ -14,6 +14,7 @@ import com.mbwasi.a2docapstone.ReservationFragment.OnListFragmentInteractionList
 import com.mbwasi.a2docapstone.entity.ReservationProvider.ReservationItem;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ReservationItem} and makes a call to the
@@ -38,17 +39,20 @@ public class MyReservationRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        Random random = new Random();
+        int randomNumber = random.nextInt(999-100) + 100;
         holder.mItem = mValues.get(position);
-        holder.partySize.setText(mValues.get(position).tableSize);
-        holder.date.setText(mValues.get(position).date);
-        holder.time.setText(mValues.get(position).time);
-        holder.confirmationNo.setText(mValues.get(position).confirmationNo);
+        holder.partySize.setText("Table Size: " + mValues.get(position).tableSize);
+        holder.date.setText("Reserved Date: " + mValues.get(position).date);
+        holder.time.setText("Reserved Time: " + mValues.get(position).time);
+        holder.confirmationNo.setText("Confirmation No: " + randomNumber +"");
         holder.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(view.getContext(), "Reservation canceled", Toast.LENGTH_SHORT).show();
+                //mValues.remove(position);
+                Toast.makeText(view.getContext(), "Reservation " +(position+1)+ " is canceled", Toast.LENGTH_SHORT).show();
             }
         });
 

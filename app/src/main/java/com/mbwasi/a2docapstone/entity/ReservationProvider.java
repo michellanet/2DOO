@@ -34,8 +34,7 @@ public class ReservationProvider {
     }
 
     private static ReservationItem createDummyItem(int position) {
-       return new ReservationItem("2","23/02/2020","17:00","12345");
-       //return new ReservationItem("Reservation" + position, "Content of Item " + position, position % 2 == 0);
+       return new ReservationItem("2","23/02/2020","17:00",position+"");
     }
 
     private static String makeDetails(int position) {
