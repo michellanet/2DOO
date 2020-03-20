@@ -2,6 +2,7 @@ package com.mbwasi.a2docapstone;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class MyReservationRecyclerViewAdapter extends RecyclerView.Adapter<MyRes
             @Override
             public void onClick(View view)
             {
-                //Toast.makeText(this, "Reservation canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Reservation canceled", Toast.LENGTH_SHORT).show();
             }
         });
 
