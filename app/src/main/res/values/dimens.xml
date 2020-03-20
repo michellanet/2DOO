@@ -25,5 +25,6 @@
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_xlarge">20sp</dimen>
     <dimen name="text_size_diff_large_small">6sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

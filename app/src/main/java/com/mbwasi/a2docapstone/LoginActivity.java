@@ -3,9 +3,11 @@ package com.mbwasi.a2docapstone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -17,7 +19,9 @@ import pk.codebase.requests.HttpResponse;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final boolean SKIP_LOGIN = true;
+    EditText username;
+    EditText password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +30,37 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginPressed(View view) {
+//        HttpRequest request = new HttpRequest();
+//        request.setOnResponseListener(new HttpRequest.OnResponseListener() {
+//            @Override
+//            public void onResponse(HttpResponse response) {
+//                if (response.code == HttpResponse.HTTP_OK) {
+//                    Log.e("LoginActivity", response.toJSONObject().toString());
+//                    System.out.println(response.toJSONObject());
+//
+//                    if(TokenUtils.storeLoginToken("Token string goes here",getApplicationContext())){
+//                        //If token was succesfully stored continue to main page
+//                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//                }
+//            }
+//        });
+//        request.setOnErrorListener(new HttpRequest.OnErrorListener() {
+//            @Override
+//            public void onError(HttpError error) {
+//                // There was an error, deal with it
+//                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+//                Log.e("LoginActivity", error.toString());
+//            }
+//        });
+//        request.get("http://2doo.ca/api/login");
+//////////////
 
-        if(SKIP_LOGIN){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            return;
-        }
+
+
+        username  = (EditText)findViewById(R.id.username);
+        password  = (EditText)findViewById(R.id.password);
 
 
         //HTTP POST request
@@ -63,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 //Any other HTTP status
                 else{
-                    Log.e("LoginActivity", "Response code:" + response.code);
                     Toast.makeText(LoginActivity.this, "Login Error", Toast.LENGTH_LONG).show();
                 }
             }
@@ -81,13 +109,12 @@ public class LoginActivity extends AppCompatActivity {
         JSONObject json;
         try {
             json = new JSONObject();
-            json.put("email", "romanmbwasi@gmail.com");
-            json.put("password", "password");
+            json.put("email", username);
+            json.put("password", password);
         } catch (JSONException ignore) {
             return;
         }
-
-        request.post("http://2doo.ca/api/user/login", json);
+        request.post("http://2doo.ca/api/login", json);
         //To fetch the token in later activities, return null if there is no token.
       ///  TokenUtils.getLoginToken(getApplicationContext());
     }
