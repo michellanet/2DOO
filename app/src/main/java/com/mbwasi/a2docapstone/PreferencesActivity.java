@@ -1,10 +1,9 @@
 package com.mbwasi.a2docapstone;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -13,33 +12,44 @@ import android.widget.Toast;
 
 public class PreferencesActivity extends AppCompatActivity {
 
-
-    private static final String KEY_TV = "tv_key";
-    private static final String KEY_PB = "pb_key";
-    private static final String KEY_SB = "sb_key";
+    PreferencesModel model = new PreferencesModel();
 
 
 
-   private TextView textView;
-   private ProgressBar progressBar;
-   private SeekBar seekBar;
-   int progress1;
+
+    private TextView textView;
+    private ProgressBar progressBar;
+    private SeekBar seekBar;
+    private SharedPreferences preferences;
+
+    public static final String PROGRESS = "SEEKBAR";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
-        textView = (TextView)findViewById(R.id.tv);
-        progressBar = (ProgressBar) findViewById(R.id.pb);
-        seekBar = (SeekBar) findViewById(R.id.sb);
+
+        textView = findViewById(R.id.tv);
+        progressBar = findViewById(R.id.pb);
+        seekBar = findViewById(R.id.sb);
+
+        preferences = getSharedPreferences(" ", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        seekBar.setProgress(preferences.getInt(PROGRESS, 0));
+
+
+        textView.setText(seekBar.getProgress() + " KM");
+        progressBar.setProgress(seekBar.getProgress());
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressBar.setProgress(progress);
-                progress1 = progress;
-                textView.setText("" + progress + " km");
+                textView.setText(progress + " KM");
             }
 
             @Override
@@ -50,30 +60,25 @@ public class PreferencesActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+                editor.putInt(PROGRESS, seekBar.getProgress());
+                editor.commit();
+
             }
         });
-
-
-        if (savedInstanceState != null){
-
-            String SavedKM = savedInstanceState.getString(KEY_TV);
-            textView.setText(SavedKM);
-        }else{
-            Toast.makeText(this, "new entry", Toast.LENGTH_SHORT).show();
-        }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle saveInstanceState) {
-
-        saveInstanceState.putString(KEY_TV, textView.getText().toString());
-
-        super.onSaveInstanceState(saveInstanceState);
-    }
 
 
 
     public void saveDistance(View view) {
-textView.setText(progress1 + " KM");
+
+        model.setDistance(seekBar.getProgress());
+
+        //Intent to send model instance to Main Activity
+
+
+        Toast.makeText(this,"Preferences Saved!", Toast.LENGTH_SHORT).show();
+
     }
 }
+
