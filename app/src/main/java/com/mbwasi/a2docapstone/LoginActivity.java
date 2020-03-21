@@ -19,7 +19,7 @@ import pk.codebase.requests.HttpResponse;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final boolean SKIP_LOGIN = false;
+    private static final boolean SKIP_LOGIN = true;
 
     EditText username;
     EditText password;
