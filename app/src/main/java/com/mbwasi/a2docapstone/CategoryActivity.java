@@ -52,7 +52,7 @@ public class CategoryActivity extends BaseActivity {
                         Log.e(TAG, "Data: "+jsonArrayOfCategories.toString());
                         Type listType = new TypeToken<ArrayList<Category>>(){}.getType();
                         categoriesList = new Gson().fromJson(jsonArrayOfCategories.toString(), listType);
-                        Log.e(TAG, "JSONObject: "+ response.toJSONObject().toString());
+                        initRecycler();
                         //TODO: Take list categoriesList and use it in RecyclerAdapter to populate the RecyclerView
                         //
 
