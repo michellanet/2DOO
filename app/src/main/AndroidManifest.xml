@@ -15,16 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/TwoDOOStyle"
         android:usesCleartextTraffic="true">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC97yV7mK-Bhk2CvJMJBice3A23hooPKls" />
 
         <activity android:name=".RestaurantInfoActivity">
         </activity>
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".PreferencesActivity" />
-        <activity android:name=".ReservationListActivity" />
+        <activity android:name=".ReservationHistoryListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".ReservationActivity"
             android:theme="@style/AppTheme.NoActionBar" />

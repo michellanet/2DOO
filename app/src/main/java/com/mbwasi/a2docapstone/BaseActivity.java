@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,10 +83,17 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         Log.i(TAG, "Navigate");
 
         switch (itemId) {
-            case R.id.drawer_item_categories://placeholder
-                Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+            case R.id.drawer_item_home://placeholder
+                Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
 
-              startActivity(intent);
+                startActivity(homeIntent);
+                break;
+
+
+            case R.id.drawer_item_categories://placeholder
+                Intent catIntent = new Intent(getApplicationContext(), CategoryActivity.class);
+
+              startActivity(catIntent);
                 break;
 
             case R.id.drawer_item_reserve:
@@ -107,7 +113,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.drawer_item_history:
 
                 Log.i(TAG, "Reserve History Nav");
-                Intent historyIntent = new Intent(getApplicationContext(), ReservationListActivity.class);
+                Intent historyIntent = new Intent(getApplicationContext(), ReservationHistoryListActivity.class);
                 startActivity(historyIntent);
                 break;
 
