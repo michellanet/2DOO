@@ -38,6 +38,7 @@ public class RestaurantInfoActivity extends AppCompatActivity {
         adapter.addFragment(new RestaurantDetailTabFrag(), "Detail");
         adapter.addFragment(new RestaurantMapTabFrag(), "Map");
         adapter.addFragment(new RestaurantMenuTabFrag(), "Menu");
+        adapter.addFragment(new RestaurantGalleryTabFrag(), "Gallery");
         viewPager.setAdapter(adapter);
     }
 }
