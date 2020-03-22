@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -99,7 +100,7 @@ public class CategoryActivity extends BaseActivity {
         }
         HttpHeaders headers = new HttpHeaders("Authorization", "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
         request.post("http://2doo.ca/api/category/list", json,headers);
-        
+
     }
 
 
@@ -115,4 +116,7 @@ public class CategoryActivity extends BaseActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    //when save is clicked
+    public void saveCat(View view) {
+    }
 }
