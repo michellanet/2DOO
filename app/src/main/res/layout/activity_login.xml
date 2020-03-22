@@ -123,13 +123,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+
             android:gravity="center"
+            android:onClick="forgotPressed"
             android:text="Forgot Password"
             android:textColor="@android:color/black"
             android:textSize="17dp"
-            android:textStyle="italic"
-            android:onClick="forgotPressed"
-            >
+            android:textStyle="italic">
 
         </TextView>
 

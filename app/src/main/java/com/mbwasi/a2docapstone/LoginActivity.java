@@ -1,9 +1,8 @@
 package com.mbwasi.a2docapstone;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +12,15 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import es.dmoral.toasty.Toasty;
 import pk.codebase.requests.HttpError;
 import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
+
 public class LoginActivity extends AppCompatActivity {
 
-    private static final boolean SKIP_LOGIN = true;
+    private static final boolean SKIP_LOGIN = false;
 
     EditText username;
     EditText password;
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         
                         if(TokenUtils.storeLoginToken(token,getApplicationContext())){
                             //If token was succesfully stored continue to main page
+                            Toasty.success(getApplicationContext(), "Success!", Toast.LENGTH_SHORT, true).show();
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                         }
@@ -69,11 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 //UNATHORIZED, wront user/pass or doesnt exist.
                 else if (response.code == HttpResponse.HTTP_UNAUTHORIZED) {
-                    Toast.makeText(LoginActivity.this, "Invalid Login", Toast.LENGTH_LONG).show();
+
+                    Toasty.error(getApplicationContext(), "Invalid Login", Toast.LENGTH_LONG, true).show();
+
                 }
                 //Any other HTTP status
                 else{
-                    Toast.makeText(LoginActivity.this, "Login Error", Toast.LENGTH_LONG).show();
+
+                    Toasty.error(getApplicationContext(), "Login Error", Toast.LENGTH_LONG, true).show();
                 }
             }
         });
@@ -81,7 +86,8 @@ public class LoginActivity extends AppCompatActivity {
         request.setOnErrorListener(new HttpRequest.OnErrorListener() {
             @Override
             public void onError(HttpError error) {
-                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+
+                Toasty.error(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG, true).show();
                 Log.e("LoginActivity", error.toString());
             }
         });

@@ -10,6 +10,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 public class PreferencesActivity extends AppCompatActivity {
 
     PreferencesModel model = new PreferencesModel();
@@ -76,8 +78,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
         //Intent to send model instance to Main Activity
 
-
-        Toast.makeText(this,"Preferences Saved!", Toast.LENGTH_SHORT).show();
+        Toasty.success(getApplicationContext(), "Preferences Saved!", Toast.LENGTH_LONG, true).show();
 
     }
 }
