@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,7 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             case R.id.drawer_item_history:
 
                 Log.i(TAG, "Reserve History Nav");
-                Intent historyIntent = new Intent(getApplicationContext(), ReservationListActivity.class);
+                Intent historyIntent = new Intent(getApplicationContext(), ReservationHistoryListActivity.class);
                 startActivity(historyIntent);
                 break;
 

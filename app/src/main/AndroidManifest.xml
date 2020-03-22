@@ -15,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/TwoDOOStyle"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
         <activity android:name=".PreferencesActivity" />
-        <activity android:name=".ReservationListActivity" />
+        <activity android:name=".ReservationHistoryListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".ReservationActivity"
             android:theme="@style/AppTheme.NoActionBar" />

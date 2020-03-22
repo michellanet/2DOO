@@ -7,10 +7,10 @@ import android.widget.Toast;
 
 import com.mbwasi.a2docapstone.entity.ReservationProvider;
 
-public class ReservationListActivity extends AppCompatActivity implements ReservationFragment.OnListFragmentInteractionListener{
+public class ReservationHistoryListActivity extends BaseActivity implements ReservationFragment.OnListFragmentInteractionListener{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_list);
     }
