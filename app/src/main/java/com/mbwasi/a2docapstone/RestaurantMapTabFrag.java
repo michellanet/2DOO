@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+
 public class RestaurantMapTabFrag extends Fragment {
     private static final String TAG = "tab_restaurant_map";
 

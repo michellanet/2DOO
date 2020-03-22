@@ -8,16 +8,16 @@ import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
 
-public class RestaurantInfoActivity extends AppCompatActivity {
+public class RestaurantInfoActivity extends BaseActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "RestaurantInfoActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
     private ViewPager mViewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_info);
 

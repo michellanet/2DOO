@@ -19,7 +19,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC97yV7mK-Bhk2CvJMJBice3A23hooPKls" />
 
-        <activity android:name=".RestaurantInfoActivity">
+        <activity android:name=".RestaurantInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
         </activity>
         <activity android:name=".ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar">
