@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -100,37 +101,9 @@ public class CategoryActivity extends BaseActivity {
         HttpHeaders headers = new HttpHeaders("Authorization", "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
         request.post("http://2doo.ca/api/category/list", json,headers);
 
-        // initImages();
     }
 
-//    private void initImages(){
-////        catPics.add("https://cdn.countryflags.com/thumbs/india/flag-800.png");
-////        catNames.add("Indian");
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/china/flag-800.png");
-////        catNames.add("Chinese");
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/vietnam/flag-800.png");
-////        catNames.add("Vietnamese");
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/south-africa/flag-800.png");
-////        catNames.add("African");
-////
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/thailand/flag-800.png");
-////        catNames.add("Thai");
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/mexico/flag-800.png");
-////        catNames.add("Mexican");
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/japan/flag-800.png");
-////        catNames.add("Japanese");
-////
-////        catPics.add("https://cdn.countryflags.com/thumbs/brazil/flag-800.png");
-////        catNames.add("Brazilian BBQ");
-////
-////        initRecycler();
-////    }
+
 
     private void initRecycler(){
         RecyclerView rv = findViewById(R.id.rv);
@@ -143,4 +116,7 @@ public class CategoryActivity extends BaseActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    //when save is clicked
+    public void saveCat(View view) {
+    }
 }
