@@ -12,19 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder>{
 
-    private ArrayList<String> catNameList = new ArrayList<>();
-    private ArrayList<String> pictureList = new ArrayList<>();
+    List<Category> categoriesList;
     private Context newContext;
 
-    public RecycleViewAdapter(ArrayList<String> catNameList, ArrayList<String> pictureList, Context newContext) {
-        this.catNameList = catNameList;
-        this.pictureList = pictureList;
+    public RecycleViewAdapter(List<Category> categoriesList, Context newContext) {
+       this.categoriesList = categoriesList;
         this.newContext = newContext;
     }
 
@@ -40,15 +38,19 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Glide.with(newContext)
-                .asBitmap().load(pictureList.get(position)).into(holder.picture);
+                .asBitmap().load(categoriesList.get(position).getImageURL()).into(holder.picture);
 
-        holder.categoryName.setText(catNameList.get(position));
+        //.into(holder.picture)
+
+
+
+        holder.categoryName.setText(categoriesList.get(position).getName());
 
     }
 
     @Override
     public int getItemCount() {
-        return catNameList.size();
+        return categoriesList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
