@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import es.dmoral.toasty.Toasty;
+
 public class ProfileActivity extends BaseActivity {
 
     EditText firstName;
@@ -109,7 +111,8 @@ public class ProfileActivity extends BaseActivity {
 
                     pickImageFromGallery();
                 }else{
-                    Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+
+                    Toasty.error(getApplicationContext(), "Permission Denied!", Toast.LENGTH_LONG, true).show();
                 }
             }
         }

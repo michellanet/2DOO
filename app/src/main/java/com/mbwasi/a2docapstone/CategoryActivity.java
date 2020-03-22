@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import es.dmoral.toasty.Toasty;
 import pk.codebase.requests.HttpError;
 import pk.codebase.requests.HttpHeaders;
 import pk.codebase.requests.HttpRequest;
@@ -67,12 +68,14 @@ public class CategoryActivity extends BaseActivity {
                 }
 
                 else if (response.code == HttpResponse.HTTP_UNAUTHORIZED) {
-                    Toast.makeText(CategoryActivity.this, "Invalid Token", Toast.LENGTH_LONG).show();
+
+                    Toasty.error(getApplicationContext(), "Invalid Token", Toast.LENGTH_LONG, true).show();
                 }
                 //Any other HTTP status
                 else{
                     Log.e(TAG, "Response code:" + response.code);
-                    Toast.makeText(CategoryActivity.this, "Network Error", Toast.LENGTH_LONG).show();
+
+                    Toasty.error(getApplicationContext(), "Network Error", Toast.LENGTH_LONG, true).show();
                 }
             }
         });
@@ -80,7 +83,8 @@ public class CategoryActivity extends BaseActivity {
         request.setOnErrorListener(new HttpRequest.OnErrorListener() {
             @Override
             public void onError(HttpError error) {
-                Toast.makeText(CategoryActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+
+                Toasty.error(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG, true).show();
                 Log.e("LoginActivity", error.toString());
             }
         });

@@ -57,6 +57,8 @@
             android:name=".RegisterActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>
