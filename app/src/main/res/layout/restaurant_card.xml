@@ -5,8 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
-
+    android:background="@color/colorWhite"
         >
 
         <androidx.cardview.widget.CardView
@@ -32,7 +31,6 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-
             android:id="@+id/restName"
             android:textSize="22sp"
             android:layout_width="wrap_content"
@@ -44,7 +42,7 @@
             />
 
         <TextView
-
+            android:id="@+id/textRestaurantCost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/imageCardView"
@@ -54,7 +52,6 @@
             android:textStyle="bold"/>
 
         <TextView
-
             android:id="@+id/restDescription"
             app:layout_constraintStart_toStartOf="@id/imageCardView"
             app:layout_constraintTop_toBottomOf="@id/restName"
@@ -65,14 +62,11 @@
 
         <me.zhanghai.android.materialratingbar.MaterialRatingBar
             android:id="@+id/ratingBar"
-
             app:layout_constraintStart_toStartOf="@id/imageCardView"
             app:layout_constraintTop_toBottomOf="@id/restDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:mrb_fillBackgroundStars="true"
             style="@style/Widget.MaterialRatingBar.RatingBar" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>

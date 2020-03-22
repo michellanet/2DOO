@@ -21,12 +21,13 @@
 
         <com.daprlabs.cardstack.SwipeDeck
             android:id="@+id/swipe_deck"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="40dp"
-            swipedeck:card_spacing="10dp"
-            swipedeck:max_visible="1"
-            swipedeck:render_above="true"
+            android:padding="10dp"
+            swipedeck:card_spacing="3dp"
+            swipedeck:max_visible="2"
+            swipedeck:render_above="false"
             swipedeck:rotation_degrees="15"
             swipedeck:opacity_end="0.2"
             />

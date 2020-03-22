@@ -15,12 +15,29 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.daprlabs.cardstack.SwipeDeck;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
+import pk.codebase.requests.HttpError;
+import pk.codebase.requests.HttpHeaders;
+import pk.codebase.requests.HttpRequest;
+import pk.codebase.requests.HttpResponse;
 
 public class MainActivity extends BaseActivity {
 
@@ -29,8 +46,9 @@ public class MainActivity extends BaseActivity {
     private Context context = this;
 
     private SwipeDeckAdapter adapter;
-    private ArrayList<String> testData;
+    //private ArrayList<String> testData;
 
+    List<Place> placesList=null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +57,88 @@ public class MainActivity extends BaseActivity {
         cardStack = (SwipeDeck) findViewById(R.id.swipe_deck);
         cardStack.setHardwareAccelerationEnabled(false);
 
-        testData = new ArrayList<>();
-        testData.add("0");
-        testData.add("1");
-        testData.add("2");
-        testData.add("3");
-        testData.add("4");
+        /////////////////////////
 
-        adapter = new SwipeDeckAdapter(testData, this);
-        cardStack.setAdapter(adapter);
+        //HTTP POST request
+        HttpRequest request = new HttpRequest();
+        request.setOnResponseListener(new HttpRequest.OnResponseListener() {
+            @Override
+            public void onResponse(HttpResponse response) {
+                if (response.code == HttpResponse.HTTP_OK) {
+
+                    try {
+                        Log.e(TAG, "JSONObject: "+ response.toJSONObject().toString());
+                        JSONArray jsonArrayOfPlaces = response.toJSONObject().getJSONArray("success");
+
+
+                        Log.e(TAG, "Places: "+jsonArrayOfPlaces.toString());
+                        Type listType = new TypeToken<ArrayList<Place>>(){}.getType();
+                        placesList = new Gson().fromJson(jsonArrayOfPlaces.toString(), listType);
+
+                        adapter = new SwipeDeckAdapter(placesList, getApplicationContext());
+                        cardStack.setAdapter(adapter);
+                      //  initRecycler();
+                        //TODO: Take list categoriesList and use it in RecyclerAdapter to populate the RecyclerView
+                        //
+
+//                        for (Category cat: categoriesList ) {
+//                            Log.i(CATEGORY_ACTIVITY, cat.getName());
+//                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e(TAG, e.toString());
+                    }
+                }
+
+                else if (response.code == HttpResponse.HTTP_UNAUTHORIZED) {
+
+                    Toasty.error(getApplicationContext(), "Invalid Token", Toast.LENGTH_LONG, true).show();
+                }
+                //Any other HTTP status
+                else{
+                    Log.e(TAG, "Response code:" + response.code);
+
+                    Toasty.error(getApplicationContext(), "Network Error", Toast.LENGTH_LONG, true).show();
+                }
+            }
+        });
+        //IF request fails
+        request.setOnErrorListener(new HttpRequest.OnErrorListener() {
+            @Override
+            public void onError(HttpError error) {
+
+                Toasty.error(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG, true).show();
+                Log.e("LoginActivity", error.toString());
+            }
+        });
+
+
+        JSONObject json;
+        try {
+            json = new JSONObject();
+            json.put("lat", "53.540964");
+            json.put("lng", "-113.502522");
+            json.put("distance", "1");
+        } catch (JSONException ignore) {
+            return;
+        }
+        Log.d(TAG, "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
+        HttpHeaders headers = new HttpHeaders("Authorization", "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
+        request.post("http://2doo.ca/api/place/list", json,headers);
+
+        /////////////////////
+
+
+
+//        testData = new ArrayList<>();
+//        testData.add("0");
+//        testData.add("1");
+//        testData.add("2");
+//        testData.add("3");
+//        testData.add("4");
+
+
 
         cardStack.setEventCallback(new SwipeDeck.SwipeEventCallback() {
             @Override
@@ -129,10 +220,10 @@ public class MainActivity extends BaseActivity {
 
     public class SwipeDeckAdapter extends BaseAdapter {
 
-        private List<String> data;
+        private  List<Place> data;
         private Context context;
 
-        public SwipeDeckAdapter(List<String> data, Context context) {
+        public SwipeDeckAdapter( List<Place> data, Context context) {
             this.data = data;
             this.context = context;
         }
@@ -163,19 +254,40 @@ public class MainActivity extends BaseActivity {
             }
             //((TextView) v.findViewById(R.id.textView2)).setText(data.get(position));
             ImageView imageView = (ImageView) v.findViewById(R.id.restaurantImage);
-         //  Picasso.with(context).load(R.drawable.food).fit().centerCrop().into(imageView);
+          Picasso.get().load(placesList.get(position).getImage()).fit().centerCrop().into(imageView);
+
+         //   Glide.with(context)
+            //        .asBitmap().load(placesList.get(position).getImage()).into(imageView);
+
             imageView.setImageResource(R.drawable.rest1);
-            TextView textView = (TextView) v.findViewById(R.id.restName);
-            String item = (String)getItem(position);
-            textView.setText(item);
+            TextView placeDescription = (TextView) v.findViewById(R.id.restDescription);
+            TextView placeName = (TextView) v.findViewById(R.id.restName);
+            TextView placeCost = (TextView) v.findViewById(R.id.textRestaurantCost);
+//
+//            RatingBar rb  = findViewById(R.id.ratingBar);
+//            rb.setIsIndicator(true);
+
+
+            Place place = (Place)getItem(position);
+        //    rb.setNumStars(place.getStars());
+            placeName.setText(place.getName());
+            placeDescription.setText(place.getAddress() + " " + place.getPostal_code()+ " " +place.getCity());
+
+            String price="";
+
+            for(int i=0;i<place.getPrice();i++){
+                price += "$";
+            }
+            placeCost.setText(price);
+
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.i("Layer type: ", Integer.toString(v.getLayerType()));
                     Log.i("Hwardware Accel type:", Integer.toString(View.LAYER_TYPE_HARDWARE));
-                    Intent i = new Intent(v.getContext(), RestaurantInfoActivity.class);
-                    v.getContext().startActivity(i);
+                  //  Intent i = new Intent(v.getContext(), RestaurantInfoActivity.class);
+                  //  v.getContext().startActivity(i);
                 }
             });
             return v;

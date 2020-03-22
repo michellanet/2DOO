@@ -51,7 +51,7 @@ public class Place
 
     private String deleted_at;
 
-    private int distance;
+    private double distance;
 
     public void setId(int id){
         this.id = id;
@@ -197,10 +197,10 @@ public class Place
     public String getDeleted_at(){
         return this.deleted_at;
     }
-    public void setDistance(int distance){
+    public void setDistance(double distance){
         this.distance = distance;
     }
-    public int getDistance(){
+    public double getDistance(){
         return this.distance;
     }
 }
