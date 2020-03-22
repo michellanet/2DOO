@@ -135,10 +135,10 @@ public class CategoryActivity extends BaseActivity {
     private void initRecycler(){
         RecyclerView rv = findViewById(R.id.rv);
 
-        //Pass categoriesList to RecyclerView adapter instead of catnames& CatPics
-        //get cat image url by categoryList[i].getImageURL()
-        //name by categoryLust[i].getName()
-        RecycleViewAdapter rva = new RecycleViewAdapter(catNames, catPics, this);
+        //Pass categoriesList to RecyclerView adapter
+        //get cat image url by categoriesList[i].getImageURL()
+        //name by categoriesList[i].getName()
+        RecycleViewAdapter rva = new RecycleViewAdapter(categoriesList, this);
         rv.setAdapter(rva);
         rv.setLayoutManager(new LinearLayoutManager(this));
     }
