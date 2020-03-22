@@ -1,99 +1,116 @@
 package com.mbwasi.a2docapstone;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.MotionEvent;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnTouchListener;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
-import android.widget.RatingBar;
-import android.widget.ViewFlipper;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.daprlabs.cardstack.SwipeDeck;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-    private static final int Swipe_Minimum_Distance = 10;
-    private static final int Swipe_Threshold_Velocity = 18;
-    private ViewFlipper viewFlipper;
-    private AnimationListener animationListener;
-    private Context context;
+    private static final String TAG = "MainActivity";
+    private SwipeDeck cardStack;
+    private Context context = this;
 
+    private SwipeDeckAdapter adapter;
+    private ArrayList<String> testData;
 
-    @SuppressWarnings("deprecation")
-    private final GestureDetector detector = new GestureDetector(new SwipeGesture());
-
-    @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton infoButton =findViewById(R.id.infoButton);
+        cardStack = (SwipeDeck) findViewById(R.id.swipe_deck);
+        cardStack.setHardwareAccelerationEnabled(false);
 
+        testData = new ArrayList<>();
+        testData.add("0");
+        testData.add("1");
+        testData.add("2");
+        testData.add("3");
+        testData.add("4");
 
-        RatingBar rb  = findViewById(R.id.ratingBar);
-        rb.setIsIndicator(true);
-        rb.setNumStars(5);
-        rb.setRating(4);
+        adapter = new SwipeDeckAdapter(testData, this);
+        cardStack.setAdapter(adapter);
 
-        RatingBar rb2  = findViewById(R.id.ratingBar2);
-        rb2.setIsIndicator(true);
-        rb2.setNumStars(5);
-        rb2.setRating(3.5F);
-
-        context = this;
-        viewFlipper = (ViewFlipper) this.findViewById(R.id.restaurantFlipper);
-
-       // viewFlipper.setAutoStart(true);
-        //Flip Interval- time after which image changes.
-       // viewFlipper.setFlipInterval(2000);
-
-        //Flipping with animation
-        viewFlipper.setInAnimation(AnimationUtils.loadAnimation(context,R.anim.left_in));
-        viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(context,R.anim.left_out));
-
-        // controlling animation
-
-        viewFlipper.getInAnimation().setAnimationListener(animationListener);
-        //Start Flipping
-      //  viewFlipper.startFlipping();
-
-        //On Touch Listener for SwipeGesture
-        viewFlipper.setOnTouchListener(new OnTouchListener() {
-
-            @SuppressLint("NewApi")
+        cardStack.setEventCallback(new SwipeDeck.SwipeEventCallback() {
             @Override
-            public boolean onTouch(final View view, final MotionEvent event) {
-
-                detector.onTouchEvent(event);
-                return true;
+            public void cardSwipedLeft(int position) {
+                Log.i("MainActivity", "card was swiped left, position in adapter: " + position);
             }
+
+            @Override
+            public void cardSwipedRight(int position) {
+                Log.i("MainActivity", "card was swiped right, position in adapter: " + position);
+            }
+
+            @Override
+            public void cardsDepleted() {
+                Log.i("MainActivity", "no more cards");
+            }
+
+            @Override
+            public void cardActionDown() {
+                Log.i(TAG, "cardActionDown");
+            }
+
+            @Override
+            public void cardActionUp() {
+                Log.i(TAG, "cardActionUp");
+            }
+
         });
+        //cardStack.setLeftImage(R.drawable.left_arrow);
+       // cardStack.setRightImage(R.drawable.right_arrow);
 
-        //Animation listener
-        animationListener = new Animation.AnimationListener() {
-            public void onAnimationStart(Animation animation) {
-                //When Animation Starts
+//        Button btn = (Button) findViewById(R.id.thumbDown);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cardStack.swipeTopCardLeft(180);
+//
+//            }
+//        });
+//        Button btn2 = (Button) findViewById(R.id.button2);
+//        btn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cardStack.swipeTopCardRight(180);
+//            }
+//        });
 
-            }
-
-            public void onAnimationRepeat(Animation animation) {
-                //On Repeatation of animation
-            }
-
-            @SuppressLint("NewApi")
-            public void onAnimationEnd(Animation animation) {
-                //After Animation end
-
-            }
-        };
+//        Button btn3 = (Button) findViewById(R.id.button3);
+//        btn3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                testData.add("a sample string.");
+////                ArrayList<String> newData = new ArrayList<>();
+////                newData.add("some new data");
+////                newData.add("some new data");
+////                newData.add("some new data");
+////                newData.add("some new data");
+////
+////                SwipeDeckAdapter adapter = new SwipeDeckAdapter(newData, context);
+////                cardStack.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
     }
 
     public void infoPressed(View view) {
@@ -101,58 +118,67 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    //Class for Swipe Gesture
-    class SwipeGesture extends SimpleOnGestureListener {
-        @SuppressLint("NewApi")
+    public void thumbUpPressed(View view) {
+        cardStack.swipeTopCardRight(180);
+    }
+
+    public void thumbDownPressed(View view) {
+        cardStack.swipeTopCardLeft(180);
+    }
+
+
+    public class SwipeDeckAdapter extends BaseAdapter {
+
+        private List<String> data;
+        private Context context;
+
+        public SwipeDeckAdapter(List<String> data, Context context) {
+            this.data = data;
+            this.context = context;
+        }
+
         @Override
-        public boolean onFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-            try {
+        public int getCount() {
+            return data.size();
+        }
 
-                //right to left swipe
-                if (me1.getX() - me2.getX() > Swipe_Minimum_Distance && Math.abs(velocityX) > Swipe_Threshold_Velocity) {
+        @Override
+        public Object getItem(int position) {
+            return data.get(position);
+        }
 
-                    //stop Flipping
-                    viewFlipper.stopFlipping();
-                    viewFlipper.getInAnimation().setAnimationListener(animationListener);
-                    viewFlipper.showNext();
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
 
-//                    viewFlipper.setAutoStart(true);
-//                    viewFlipper.setFlipInterval(2000);
-//                    viewFlipper.startFlipping();
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
-                    return true;
-                }
-
-                //left to right swipe
-
-                else if (me2.getX() - me1.getX() > Swipe_Minimum_Distance && Math.abs(velocityX) > Swipe_Threshold_Velocity) {
-
-                    viewFlipper.stopFlipping();
-                    viewFlipper.setInAnimation(AnimationUtils.loadAnimation(context, R.anim.right_in));
-                    viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(context,R.anim.right_out));
-
-                    // controlling animation
-                    viewFlipper.getInAnimation().setAnimationListener(animationListener);
-                    viewFlipper.showPrevious();
-
-//                    viewFlipper.setAutoStart(true);
-//                    viewFlipper.setFlipInterval(2000);
-//                    viewFlipper.startFlipping();
-
-                    viewFlipper.setInAnimation(AnimationUtils.loadAnimation(context, R.anim.left_in));
-                    viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(context, R.anim.left_out));
-
-                    return true;
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            View v = convertView;
+            if (v == null) {
+                LayoutInflater inflater = getLayoutInflater();
+                // normally use a viewholder
+                v = inflater.inflate(R.layout.restaurant_card, parent, false);
             }
+            //((TextView) v.findViewById(R.id.textView2)).setText(data.get(position));
+            ImageView imageView = (ImageView) v.findViewById(R.id.restaurantImage);
+         //  Picasso.with(context).load(R.drawable.food).fit().centerCrop().into(imageView);
+            imageView.setImageResource(R.drawable.rest1);
+            TextView textView = (TextView) v.findViewById(R.id.restName);
+            String item = (String)getItem(position);
+            textView.setText(item);
 
-            return false;
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("Layer type: ", Integer.toString(v.getLayerType()));
+                    Log.i("Hwardware Accel type:", Integer.toString(View.LAYER_TYPE_HARDWARE));
+                    Intent i = new Intent(v.getContext(), RestaurantInfoActivity.class);
+                    v.getContext().startActivity(i);
+                }
+            });
+            return v;
         }
     }
 }
-
-
