@@ -5,4 +5,9 @@
     <color name="colorAccent">#A80808</color>
     <color name="white">#FFFFFF</color>
     <color name="TwoDOORed">#E43F3F</color>
+    <color name="colorBlue">#2C98F0</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorPrimaryRed">#EF5350</color>
+    <color name="colorPrimaryDarkRed">#B71C1C</color>
+    <color name="colorYellow">#FFCA28</color>
 </resources>

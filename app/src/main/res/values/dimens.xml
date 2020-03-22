@@ -27,4 +27,6 @@
     <dimen name="text_size_diff_large_small">6sp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="appbar_padding">16dp</dimen>
+
 </resources>

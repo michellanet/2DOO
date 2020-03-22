@@ -97,7 +97,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void infoPressed(View view) {
-        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+        Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);
         startActivity(intent);
     }
 

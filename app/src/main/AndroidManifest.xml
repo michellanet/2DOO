@@ -5,7 +5,7 @@
     <!-- Allows internet access for android app -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Allows app to access location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- Allows app to access pictures from phone to update profile picture -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/TwoDOOStyle"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfileActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC97yV7mK-Bhk2CvJMJBice3A23hooPKls" />
+
+        <activity android:name=".RestaurantInfoActivity">
+        </activity>
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".PreferencesActivity" />
         <activity android:name=".ReservationListActivity" />
         <activity
@@ -33,7 +40,6 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MapActivity" />
         <activity
             android:name=".LoginActivity"
             android:configChanges="keyboardHidden|orientation"
