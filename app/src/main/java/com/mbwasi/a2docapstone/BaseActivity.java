@@ -83,10 +83,17 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         Log.i(TAG, "Navigate");
 
         switch (itemId) {
-            case R.id.drawer_item_categories://placeholder
-                Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+            case R.id.drawer_item_home://placeholder
+                Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
 
-              startActivity(intent);
+                startActivity(homeIntent);
+                break;
+
+
+            case R.id.drawer_item_categories://placeholder
+                Intent catIntent = new Intent(getApplicationContext(), CategoryActivity.class);
+
+              startActivity(catIntent);
                 break;
 
             case R.id.drawer_item_reserve:
