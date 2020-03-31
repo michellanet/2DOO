@@ -19,6 +19,20 @@ import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
 
+//General TODO list
+//TODO: Profile activity data has to reflect on sidebar information
+//TODO: Save categories selected, probably in shared prefs
+//TODO: Fav restauranmts activity
+//TODO: Save any thumbed up restaurant to fav restaurants.probably in shared preffs again.
+//TODO: Create reservation actualy save reservation, probably to shared preffs.
+//TODO: Reservation history, actually load reservation data from shared preffs.
+//TODO: Setings, save distance setting to shared preffs.
+//TODO: Add another settin? Logout maybe
+//TODO: use settings distance in querying restaurants.
+//TODO: Main act fix stars
+//TODO: Main screen, looks kinda empty? display more info?
+//TODO: Details use selected restaurant data, for details, map location,
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final boolean SKIP_LOGIN = false;
