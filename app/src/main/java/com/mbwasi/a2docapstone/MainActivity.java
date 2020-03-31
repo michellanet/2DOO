@@ -123,15 +123,22 @@ public class MainActivity extends BaseActivity {
         } catch (JSONException ignore) {
             return;
         }
-        Log.d(TAG, "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
-        HttpHeaders headers = new HttpHeaders("Authorization", "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
-        request.post("http://2doo.ca/api/place/list", json,headers);
 
-        /////////////////////
+        String token = TokenUtils.getLoginToken(getApplicationContext());
+
+        if(token!=null){
+            String bearerToken = "Bearer " + token;
+            Log.d(TAG, bearerToken);
+            HttpHeaders headers = new HttpHeaders("Authorization", bearerToken);
+            request.post("http://2doo.ca/api/place/list", json,headers);
+        }else{
+            Toasty.error(getApplicationContext(), "Invalid Token!", Toast.LENGTH_LONG, true).show();
+            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(intent);
+        }
 
 
-
-//        testData = new ArrayList<>();
+    //        testData = new ArrayList<>();
 //        testData.add("0");
 //        testData.add("1");
 //        testData.add("2");

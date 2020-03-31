@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import es.dmoral.toasty.Toasty;
 import pk.codebase.requests.HttpError;
+import pk.codebase.requests.HttpHeaders;
 import pk.codebase.requests.HttpRequest;
 import pk.codebase.requests.HttpResponse;
 
@@ -110,6 +111,17 @@ public class LoginActivity extends AppCompatActivity {
     public void registerPressed(View view) {
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String token = TokenUtils.getLoginToken(getApplicationContext());
+
+        if(token!=null){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void forgotPressed(View view) {
