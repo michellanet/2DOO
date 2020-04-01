@@ -23,7 +23,7 @@ class MenuListAdapter extends RecyclerView.Adapter {
             "$29.99",
             "$8.5",
             "$10.5",
-            "$28.5",
+            "$28.5"
     };
 
 
