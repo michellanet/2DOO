@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,12 +92,17 @@ public class ProfileActivity extends BaseActivity {
                     currentUser.setUpdated_at(successObject.getString("updated_at"));
                     currentUser.setDeleted_at(successObject.getString("deleted_at"));
 
-                    Log.e(TAG, "Name: " + currentUser.getName());
+                    Log.e(TAG, "Name: " + currentUser.getAvatar());
 
                     firstName.setText(currentUser.getName());
                     email.setText(currentUser.getEmail());
                     phone.setText(currentUser.getPhone());
-                    //Add Image Here
+
+                    Picasso.get().load("http://2doo.ca/storage/avatars/"+currentUser.getAvatar()).into(image);
+
+
+
+
 
 
 
