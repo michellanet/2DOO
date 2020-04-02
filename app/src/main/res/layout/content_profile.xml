@@ -49,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First Name:"
+            android:text="Name:"
             android:textSize="15sp"
             android:textStyle="bold|italic"
             android:textColor="@android:color/black" />
@@ -59,25 +59,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="First Name Goes Here"
+            android:text=""
             android:textSize="15sp" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name:"
-            android:textSize="15sp"
-            android:textStyle="bold|italic"
-            android:textColor="@android:color/black" />
 
-        <EditText
-            android:id="@+id/lName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Last Name Goes Here"
-            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Email Goes Here"
+            android:text=""
             android:textSize="15sp" />
 
         <TextView
@@ -107,9 +93,9 @@
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Address Goes Here"
-            android:textSize="15sp"/>
+            android:layout_marginBottom="15dp"
+            android:text=""
+            android:textSize="15sp" />
 
 
 
@@ -173,7 +159,7 @@
             android:backgroundTint="#42f57b"
             android:textColor="@android:color/black"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="10dp" />
 
 
 

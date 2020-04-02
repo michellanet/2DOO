@@ -37,10 +37,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Glide.with(newContext)
-                .asBitmap().load(categoriesList.get(position).getImageURL()).into(holder.picture);
+        Glide.with(newContext).asBitmap().load(categoriesList.get(position).getImageURL()).into(holder.picture);
 
-        //.into(holder.picture)
 
 
 

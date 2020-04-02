@@ -29,8 +29,6 @@ import pk.codebase.requests.HttpResponse;
 public class CategoryActivity extends BaseActivity {
 
     public static final String TAG = "CategoryActivity";
-    private ArrayList<String> catNames = new ArrayList<>();
-    private ArrayList<String> catPics = new ArrayList<>();
 
     List<Category> categoriesList=null;
 
@@ -52,15 +50,12 @@ public class CategoryActivity extends BaseActivity {
                         JSONArray jsonArrayOfCategories = successObject.getJSONArray("data");
 
                         Log.e(TAG, "Data: "+jsonArrayOfCategories.toString());
+
+
                         Type listType = new TypeToken<ArrayList<Category>>(){}.getType();
                         categoriesList = new Gson().fromJson(jsonArrayOfCategories.toString(), listType);
                         initRecycler();
-                        //TODO: Take list categoriesList and use it in RecyclerAdapter to populate the RecyclerView
-                        //
 
-//                        for (Category cat: categoriesList ) {
-//                            Log.i(CATEGORY_ACTIVITY, cat.getName());
-//                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
