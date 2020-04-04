@@ -6,9 +6,12 @@ import androidx.annotation.Nullable;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -24,6 +27,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +45,7 @@ import pk.codebase.requests.HttpResponse;
 
 public class ProfileActivity extends BaseActivity {
 
-    EditText firstName;
+    EditText fullName;
     EditText email;
     EditText phone;
 
@@ -56,13 +65,13 @@ public class ProfileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        firstName = (EditText)findViewById(R.id.fName);
+        fullName = (EditText)findViewById(R.id.fName);
         email = (EditText)findViewById(R.id.email);
         phone = (EditText)findViewById(R.id.address);
         image = (ImageView)findViewById(R.id.Pic);
 
 
-        firstName.setEnabled(false);
+        fullName.setEnabled(false);
         email.setEnabled(false);
         phone.setEnabled(false);
 
@@ -96,7 +105,7 @@ public class ProfileActivity extends BaseActivity {
 
                     Log.e(TAG, "Name: " + currentUser.getAvatar());
 
-                    firstName.setText(currentUser.getName());
+                    fullName.setText(currentUser.getName());
                     email.setText(currentUser.getEmail());
                     phone.setText(currentUser.getPhone());
 
@@ -113,13 +122,13 @@ public class ProfileActivity extends BaseActivity {
 
                 else if (response.code == HttpResponse.HTTP_UNAUTHORIZED) {
 
-                    Toasty.error(getApplicationContext(), "Invalid Token", Toast.LENGTH_LONG, true).show();
+                    Toasty.error(getApplicationContext(), "Invalid Token: Reload Page", Toast.LENGTH_LONG, true).show();
                 }
                 //Any other HTTP status
                 else{
                     Log.e(TAG, "Response code:" + response.code);
 
-                    Toasty.error(getApplicationContext(), "Network Error", Toast.LENGTH_LONG, true).show();
+                    Toasty.error(getApplicationContext(), "Network Error: Reload Page", Toast.LENGTH_LONG, true).show();
                 }
             }
         });
@@ -128,7 +137,7 @@ public class ProfileActivity extends BaseActivity {
             @Override
             public void onError(HttpError error) {
 
-                Toasty.error(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG, true).show();
+                Toasty.error(getApplicationContext(), "Error: Reload Page", Toast.LENGTH_LONG, true).show();
                 Log.e("LoginActivity", error.toString());
             }
         });
@@ -148,17 +157,84 @@ public class ProfileActivity extends BaseActivity {
 
     public void editProfile(View view) {
 
-        firstName.setEnabled(true);
+        fullName.setEnabled(true);
         email.setEnabled(true);
         phone.setEnabled(true);
 
     }
 
-    public void saveProfile(View view) {
+    public void saveProfile(View view) throws IOException {
 
-        firstName.setEnabled(false);
+        fullName.setEnabled(false);
         email.setEnabled(false);
         phone.setEnabled(false);
+
+        BitmapDrawable drawable = (BitmapDrawable) image.getDrawable();
+
+
+
+
+
+        //HTTP POST request
+        HttpRequest request = new HttpRequest();
+        request.setOnResponseListener(new HttpRequest.OnResponseListener() {
+            @Override
+            public void onResponse(HttpResponse response) {
+                if (response.code == HttpResponse.HTTP_OK) {
+
+                    try {
+                        Log.e("ProfileActivity", response.toJSONObject().toString());
+
+                        JSONObject jsonObject = response.toJSONObject().getJSONObject("success");
+                        String token =jsonObject.getString("token");
+                        Log.e("ProfileActivity", "Token: "+token);
+
+                        if(TokenUtils.storeLoginToken(token,getApplicationContext())){
+                            //If token was succesfully stored continue to main page
+                            Toasty.success(getApplicationContext(), "Success!", Toast.LENGTH_SHORT, true).show();
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                //UNATHORIZED, wront user/pass or doesnt exist.
+                else if (response.code == HttpResponse.HTTP_UNAUTHORIZED) {
+
+                    Toasty.error(getApplicationContext(), "Invalid Try Again", Toast.LENGTH_LONG, true).show();
+
+                }
+                //Any other HTTP status
+                else{
+
+                    Toasty.error(getApplicationContext(), "Invalid Try Again", Toast.LENGTH_LONG, true).show();
+                }
+            }
+        });
+        //IF request fails
+        request.setOnErrorListener(new HttpRequest.OnErrorListener() {
+            @Override
+            public void onError(HttpError error) {
+
+                Toasty.error(getApplicationContext(), "Update Failed Try Again", Toast.LENGTH_LONG, true).show();
+                Log.e("RegisterActivity", error.toString());
+            }
+        });
+
+        JSONObject json;
+        try {
+            json = new JSONObject();
+            json.put("name", fullName.getText());
+            json.put("email", email.getText());
+            json.put("phone", phone.getText());
+            json.put("avatar", image.getDrawable());
+
+        } catch (JSONException ignore) {
+            return;
+        }
+        request.post("http://2doo.ca/api/user/update", json);
+
 
 
     }
