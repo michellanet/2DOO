@@ -170,6 +170,22 @@ public class ProfileActivity extends BaseActivity {
         phone.setEnabled(false);
 
         BitmapDrawable drawable = (BitmapDrawable) image.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+
+
+        File f = new File(context.getCacheDir(), "filename");
+
+        f.createNewFile();
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+
+//        byte[] bitmapdata = bos.toByteArray();
+//
+//        FileOutputStream fos = new FileOutputStream(f);
+//
+//        fos.write(bitmapdata);
+
 
 
 
@@ -183,7 +199,7 @@ public class ProfileActivity extends BaseActivity {
                 if (response.code == HttpResponse.HTTP_OK) {
 
                     try {
-                        Log.e("ProfileActivity", response.toJSONObject().toString());
+//                        Log.e("ProfileActivity", response.toJSONObject().toString());
 
                         JSONObject jsonObject = response.toJSONObject().getJSONObject("success");
                         String token =jsonObject.getString("token");
@@ -228,7 +244,7 @@ public class ProfileActivity extends BaseActivity {
             json.put("name", fullName.getText());
             json.put("email", email.getText());
             json.put("phone", phone.getText());
-            json.put("avatar", image.getDrawable());
+            json.put("avatar",  bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos));
 
         } catch (JSONException ignore) {
             return;
