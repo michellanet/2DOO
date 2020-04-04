@@ -42,6 +42,8 @@ public class ProfileActivity extends BaseActivity {
 
     ImageView image;
 
+
+
     public static final String TAG = "ProfileActivity";
 
     User currentUser = new User();
@@ -103,10 +105,6 @@ public class ProfileActivity extends BaseActivity {
 
 
 
-
-
-
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Log.e(TAG, e.toString());
@@ -145,9 +143,6 @@ public class ProfileActivity extends BaseActivity {
         }
         HttpHeaders headers = new HttpHeaders("Authorization", "Bearer " + TokenUtils.getLoginToken(getApplicationContext()));
         request.post("http://2doo.ca/api/user/details", json,headers);
-
-
-
 
     }
 

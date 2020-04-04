@@ -26,12 +26,15 @@ import pk.codebase.requests.HttpResponse;
 //TODO: Save any thumbed up restaurant to fav restaurants.probably in shared preffs again.
 //TODO: Create reservation actualy save reservation, probably to shared preffs.
 //TODO: Reservation history, actually load reservation data from shared preffs.
-//TODO: Setings, save distance setting to shared preffs.
-//TODO: Add another settin? Logout maybe
 //TODO: use settings distance in querying restaurants.
 //TODO: Main act fix stars
 //TODO: Main screen, looks kinda empty? display more info?
 //TODO: Details use selected restaurant data, for details, map location,
+
+
+//Done:
+//Setings, save distance setting to shared preffs.
+// Logout Created
 
 public class LoginActivity extends AppCompatActivity {
 

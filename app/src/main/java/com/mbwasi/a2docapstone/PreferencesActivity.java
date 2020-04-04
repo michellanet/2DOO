@@ -29,6 +29,7 @@ public class PreferencesActivity extends AppCompatActivity {
     private Button logoutButton;
 
     public static final String PROGRESS = "SEEKBAR";
+    public static final String DISTANCE = "distancePrefs";
 
 
 
@@ -44,7 +45,7 @@ public class PreferencesActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.pb);
         seekBar = findViewById(R.id.sb);
 
-        preferences = getSharedPreferences(" ", MODE_PRIVATE);
+        preferences = getSharedPreferences(DISTANCE, MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
         seekBar.setProgress(preferences.getInt(PROGRESS, 0));
 
