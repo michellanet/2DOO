@@ -335,11 +335,11 @@ public class ProfileActivity extends BaseActivity {
     private void saveAvatarImageToInternalStorage( String sourcePath) {
 
         try {
-            FileOutputStream fos  = null;
-            fos = openFileOutput("avatar.jpg",MODE_APPEND);
+            FileOutputStream fos  = new FileOutputStream(getFilesDir() + "/avatar.jpg",false);
             File file = new File(sourcePath);
 
             byte[] bytes = getBytesFromFile(file);
+
 
             fos.write(bytes);
             fos.close();

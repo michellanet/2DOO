@@ -92,6 +92,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             profielImage.setImageBitmap(myBitmap);
         }
+        //TODO: Also Set the name to the correct one.
 
         // select the correct nav menu item
      //   navigationView.getMenu().findItem(mNavItemId).setChecked(true);
