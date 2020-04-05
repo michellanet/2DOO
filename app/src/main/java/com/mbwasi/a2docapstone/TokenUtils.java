@@ -13,6 +13,7 @@ public abstract class TokenUtils {
         try {
             SharedPreferences pref = context.getSharedPreferences(DOO_PREFS, 0); // 0 - for private mode
             SharedPreferences.Editor editor = pref.edit();
+
             editor.putString(LOGIN_TOKEN, tokenString); // Storing string
             editor.commit();
             return true;

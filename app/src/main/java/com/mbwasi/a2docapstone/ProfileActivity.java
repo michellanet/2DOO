@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,7 @@ import org.json.JSONObject;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -322,6 +325,36 @@ public class ProfileActivity extends BaseActivity {
         }
     }
 
+    private byte[] getBytesFromFile(File file) throws IOException {
+        byte[] data = FileUtils.readFileToByteArray(file);
+        return data;
+
+    }
+
+
+    private void saveAvatarImageToInternalStorage( String sourcePath) {
+
+        try {
+            FileOutputStream fos  = null;
+            fos = openFileOutput("avatar.jpg",MODE_APPEND);
+            File file = new File(sourcePath);
+
+            byte[] bytes = getBytesFromFile(file);
+
+            fos.write(bytes);
+            fos.close();
+
+          //  Toast.makeText(getApplicationContext(),"File saved in :"+ getFilesDir() + "/"+name,Toast.LENGTH_SHORT).show();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -332,9 +365,13 @@ public class ProfileActivity extends BaseActivity {
 
             //Begin posting profile to server
             //Turn URI into path
-            File imageFile = new File(getRealPathFromURI(selectedImageURI));
+
 
             image.setImageURI(data.getData());
+
+            String actualPath = getRealPathFromURI(selectedImageURI);
+            File imageFile = new File(actualPath);
+            saveAvatarImageToInternalStorage(actualPath);
 
             HttpRequest request = new HttpRequest();
             request.setOnResponseListener(new HttpRequest.OnResponseListener() {

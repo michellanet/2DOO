@@ -3,10 +3,14 @@ package com.mbwasi.a2docapstone;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +25,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
@@ -50,6 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
 
 
 
+
     }
 
     @Override
@@ -74,6 +81,17 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         // listen for navigation events
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        View hView =  navigationView.getHeaderView(0);
+      //  TextView nav_user = (TextView)hView.findViewById(R.id.nav_name);
+        //nav_user.setText(user);
+        CircleImageView profielImage = (CircleImageView) hView.findViewById(R.id.profileImage);
+        File imgFile = new  File(   getFilesDir()+"/avatar.jpg");
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            profielImage.setImageBitmap(myBitmap);
+        }
 
         // select the correct nav menu item
      //   navigationView.getMenu().findItem(mNavItemId).setChecked(true);
