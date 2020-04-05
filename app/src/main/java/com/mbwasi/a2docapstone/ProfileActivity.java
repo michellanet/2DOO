@@ -6,11 +6,13 @@ import androidx.annotation.Nullable;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+import pk.codebase.requests.FormData;
 import pk.codebase.requests.HttpError;
 import pk.codebase.requests.HttpHeaders;
 import pk.codebase.requests.HttpRequest;
@@ -84,7 +87,7 @@ public class ProfileActivity extends BaseActivity {
                 if (response.code == HttpResponse.HTTP_OK) {
 
                     try {
-                        Log.e(TAG, "JSONObject: "+ response.toJSONObject().toString());
+                        Log.i(TAG, "JSONObject: "+ response.toJSONObject().toString());
 
 
                         JSONObject successObject = response.toJSONObject().getJSONObject("success");
@@ -103,7 +106,7 @@ public class ProfileActivity extends BaseActivity {
                     currentUser.setUpdated_at(successObject.getString("updated_at"));
                     currentUser.setDeleted_at(successObject.getString("deleted_at"));
 
-                    Log.e(TAG, "Name: " + currentUser.getAvatar());
+                    Log.i(TAG, "Name: " + currentUser.getAvatar());
 
                     fullName.setText(currentUser.getName());
                     email.setText(currentUser.getEmail());
@@ -307,15 +310,76 @@ public class ProfileActivity extends BaseActivity {
         }
     }
 
+    private String getRealPathFromURI(Uri contentURI) {
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            return contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            Log.i(TAG, "getRealPathFromURI: " + cursor.getString(idx));
+            return cursor.getString(idx);
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
-
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            Log.i(TAG,"Path:" + data.getData().getPath());
+
+            Uri selectedImageURI = data.getData();
+
+            //Begin posting profile to server
+            //Turn URI into path
+            File imageFile = new File(getRealPathFromURI(selectedImageURI));
 
             image.setImageURI(data.getData());
+
+            HttpRequest request = new HttpRequest();
+            request.setOnResponseListener(new HttpRequest.OnResponseListener() {
+                @Override
+                public void onResponse(HttpResponse response) {
+                    if (response.code == HttpResponse.HTTP_OK) {
+                        Log.d(TAG, "onResponse: " + response.text);
+                    }
+                }
+            });
+            request.setOnErrorListener(new HttpRequest.OnErrorListener() {
+                @Override
+                public void onError(HttpError error) {
+                    Log.e(TAG, "onError: ",error );
+                }
+            });
+
+            String token = TokenUtils.getLoginToken(getApplicationContext());
+
+            if(token!=null){
+                String bearerToken = "Bearer " + token;
+                Log.d(TAG, bearerToken);
+                HttpHeaders headers = new HttpHeaders("Authorization", bearerToken);
+
+                FormData formData = new FormData();
+                //TODO:: get actual values from profile activity
+                formData.put("name","Romano");
+                formData.put("email","mbwasiroman@gmail.com");
+                formData.put("phone","12345678");
+                formData.put("avatar", imageFile);
+                // Localhost test site     request.post("http://10.0.2.2/uploadtest/upload.php", formData);
+                request.post("http://2doo.ca/api/user/update", formData,headers);
+
+            }else{
+                Toasty.error(getApplicationContext(), "Invalid Token!", Toast.LENGTH_LONG, true).show();
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+            }
+            //End posting profile
+
+
+
+
+
+
         }
     }
     }
-
