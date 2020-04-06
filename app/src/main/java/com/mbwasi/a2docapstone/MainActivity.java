@@ -42,13 +42,14 @@ import pk.codebase.requests.HttpResponse;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
+    public static final String SELECTED_PLACE = "SELECTED_PLACE";
     private SwipeDeck cardStack;
     private Context context = this;
 
     private SwipeDeckAdapter adapter;
-    //private ArrayList<String> testData;
-
     List<Place> placesList=null;
+    int selectedPlaceIndex=0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +57,6 @@ public class MainActivity extends BaseActivity {
 
         cardStack = (SwipeDeck) findViewById(R.id.swipe_deck);
         cardStack.setHardwareAccelerationEnabled(false);
-
-        /////////////////////////
 
         //HTTP POST request
         HttpRequest request = new HttpRequest();
@@ -77,13 +76,8 @@ public class MainActivity extends BaseActivity {
 
                         adapter = new SwipeDeckAdapter(placesList, getApplicationContext());
                         cardStack.setAdapter(adapter);
-                      //  initRecycler();
-                        //TODO: Take list categoriesList and use it in RecyclerAdapter to populate the RecyclerView
-                        //
 
-//                        for (Category cat: categoriesList ) {
-//                            Log.i(CATEGORY_ACTIVITY, cat.getName());
-//                        }
+                        //TODO: Take list categoriesList and use it in RecyclerAdapter to populate the RecyclerView
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -137,25 +131,17 @@ public class MainActivity extends BaseActivity {
             startActivity(intent);
         }
 
-
-    //        testData = new ArrayList<>();
-//        testData.add("0");
-//        testData.add("1");
-//        testData.add("2");
-//        testData.add("3");
-//        testData.add("4");
-
-
-
         cardStack.setEventCallback(new SwipeDeck.SwipeEventCallback() {
             @Override
             public void cardSwipedLeft(int position) {
                 Log.i("MainActivity", "card was swiped left, position in adapter: " + position);
+                selectedPlaceIndex =position;
             }
 
             @Override
             public void cardSwipedRight(int position) {
                 Log.i("MainActivity", "card was swiped right, position in adapter: " + position);
+                selectedPlaceIndex =position;
             }
 
             @Override
@@ -213,6 +199,8 @@ public class MainActivity extends BaseActivity {
 
     public void infoPressed(View view) {
         Intent intent = new Intent(getApplicationContext(), RestaurantInfoActivity.class);
+
+        intent.putExtra(SELECTED_PLACE,placesList.get(selectedPlaceIndex));
         startActivity(intent);
     }
 
@@ -263,20 +251,19 @@ public class MainActivity extends BaseActivity {
             ImageView imageView = (ImageView) v.findViewById(R.id.restaurantImage);
           Picasso.get().load(placesList.get(position).getImage()).fit().centerCrop().into(imageView);
 
-         //   Glide.with(context)
-            //        .asBitmap().load(placesList.get(position).getImage()).into(imageView);
-
             imageView.setImageResource(R.drawable.rest1);
             TextView placeDescription = (TextView) v.findViewById(R.id.restDescription);
             TextView placeName = (TextView) v.findViewById(R.id.restName);
             TextView placeCost = (TextView) v.findViewById(R.id.textRestaurantCost);
-//
-//            RatingBar rb  = findViewById(R.id.ratingBar);
-//            rb.setIsIndicator(true);
 
+            RatingBar rb  = (RatingBar) v.findViewById(R.id.ratingBar);
+          rb.setIsIndicator(true);
 
             Place place = (Place)getItem(position);
-        //    rb.setNumStars(place.getStars());
+
+            rb.setNumStars(5);
+            rb.setRating(place.getStars());
+
             placeName.setText(place.getName());
             placeDescription.setText(place.getAddress() + " " + place.getPostal_code()+ " " +place.getCity());
 

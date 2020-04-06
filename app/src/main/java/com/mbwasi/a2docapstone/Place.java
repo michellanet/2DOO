@@ -1,7 +1,9 @@
 package com.mbwasi.a2docapstone;
 
 
-public class Place
+import java.io.Serializable;
+
+public class Place implements Serializable
 {
     private int id;
 

@@ -21,6 +21,14 @@ public class RestaurantInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_info);
 
+        //TODO: Lucan
+        //GET Place/Restaurant object from MainActivity From Roman
+        Place selectedPlace = (Place)getIntent().getSerializableExtra(MainActivity.SELECTED_PLACE);
+
+        if (selectedPlace != null) {
+            Log.i(TAG, "onCreate: "+ selectedPlace.getName() + " selected.");
+        }
+
         Log.d(TAG, "OnCreate: Starting");
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());

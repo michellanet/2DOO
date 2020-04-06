@@ -257,11 +257,7 @@ public class ProfileActivity extends BaseActivity {
         }
         request.post("http://2doo.ca/api/user/update", json);
 
-
-
     }
-
-
 
     public void editPic(View view) {
 
@@ -276,9 +272,6 @@ public class ProfileActivity extends BaseActivity {
                 pickImageFromGallery();
             }
 
-
-
-
         }else{
 
             pickImageFromGallery();
@@ -286,7 +279,6 @@ public class ProfileActivity extends BaseActivity {
         }
 
     }
-
 
 
     private void pickImageFromGallery() {
@@ -331,7 +323,6 @@ public class ProfileActivity extends BaseActivity {
 
     }
 
-
     private void saveAvatarImageToInternalStorage( String sourcePath) {
 
         try {
@@ -339,7 +330,6 @@ public class ProfileActivity extends BaseActivity {
             File file = new File(sourcePath);
 
             byte[] bytes = getBytesFromFile(file);
-
 
             fos.write(bytes);
             fos.close();
@@ -351,8 +341,6 @@ public class ProfileActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -365,7 +353,6 @@ public class ProfileActivity extends BaseActivity {
 
             //Begin posting profile to server
             //Turn URI into path
-
 
             image.setImageURI(data.getData());
 
@@ -411,11 +398,6 @@ public class ProfileActivity extends BaseActivity {
                 startActivity(intent);
             }
             //End posting profile
-
-
-
-
-
 
         }
     }
