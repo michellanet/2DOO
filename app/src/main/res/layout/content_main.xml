@@ -9,19 +9,19 @@
 >
 <LinearLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="5"
     android:orientation="vertical"
     >
     <com.daprlabs.cardstack.SwipeFrameLayout
         android:layout_marginTop="35dp"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:id="@+id/swipeLayout"
         android:orientation="vertical">
 
         <com.daprlabs.cardstack.SwipeDeck
             android:id="@+id/swipe_deck"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -36,9 +36,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="25dp"
+
+
         >
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/thumbDown"
@@ -46,7 +48,7 @@
         swipedeck:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+android:layout_margin="20dp"
         android:onClick="thumbDownPressed"
 
         android:src="@drawable/thumb_down"/>
@@ -58,7 +60,7 @@
             swipedeck:layout_constraintBottom_toBottomOf="parent"
             swipedeck:layout_constraintLeft_toRightOf="@id/thumbDown"
             swipedeck:layout_constraintRight_toLeftOf="@id/thumbUp"
-
+            android:layout_margin="20dp"
             android:backgroundTint="#4281f5"
             android:onClick="infoPressed"
 
@@ -69,7 +71,7 @@
         android:id="@+id/thumbUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_margin="20dp"
         swipedeck:layout_constraintBottom_toBottomOf="parent"
         swipedeck:layout_constraintRight_toRightOf="parent"
         android:backgroundTint="#42f57b"
