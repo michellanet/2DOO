@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -42,6 +43,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import pk.codebase.requests.FormData;
 import pk.codebase.requests.HttpError;
@@ -74,7 +76,7 @@ public class ProfileActivity extends BaseActivity {
         fullName = (EditText)findViewById(R.id.fName);
         email = (EditText)findViewById(R.id.email);
         phone = (EditText)findViewById(R.id.address);
-        image = (ImageView)findViewById(R.id.Pic);
+        image = (CircleImageView)findViewById(R.id.Pic);
 
 
         fullName.setEnabled(false);
@@ -115,10 +117,8 @@ public class ProfileActivity extends BaseActivity {
                     email.setText(currentUser.getEmail());
                     phone.setText(currentUser.getPhone());
 
+                    Log.i(TAG,"http://2doo.ca/storage/avatars/"+currentUser.getAvatar());
                     Picasso.get().load("http://2doo.ca/storage/avatars/"+currentUser.getAvatar()).into(image);
-
-
-
 
                     } catch (JSONException e) {
                         e.printStackTrace();

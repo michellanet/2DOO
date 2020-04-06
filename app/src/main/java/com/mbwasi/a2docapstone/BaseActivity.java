@@ -54,9 +54,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-
     }
 
     @Override
@@ -87,6 +84,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
       //  TextView nav_user = (TextView)hView.findViewById(R.id.nav_name);
         //nav_user.setText(user);
         CircleImageView profielImage = (CircleImageView) hView.findViewById(R.id.profileImage);
+
         File imgFile = new  File(   getFilesDir()+"/avatar.jpg");
         if(imgFile.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());

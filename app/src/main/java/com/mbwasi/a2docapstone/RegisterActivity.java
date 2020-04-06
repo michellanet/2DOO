@@ -39,12 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
         repeatPassword = findViewById(R.id.password2ET);
         phone = findViewById(R.id.phoneET);
 
-
     }
 
     public void registerPressed(View view) {
-
-
         //HTTP POST request
         HttpRequest request = new HttpRequest();
         request.setOnResponseListener(new HttpRequest.OnResponseListener() {
@@ -53,14 +50,14 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.code == HttpResponse.HTTP_OK) {
 
                     try {
-                        Log.e("RegisterActivity", response.toJSONObject().toString());
+                        Log.i("RegisterActivity", response.toJSONObject().toString());
 
                         JSONObject jsonObject = response.toJSONObject().getJSONObject("success");
                         String token =jsonObject.getString("token");
-                        Log.e("RegisterActivity", "Token: "+token);
+                        Log.i("RegisterActivity", "Token: "+token);
 
                         if(TokenUtils.storeLoginToken(token,getApplicationContext())){
-                            //If token was succesfully stored continue to main page
+                            //If token was successfully stored continue to main page
                             Toasty.success(getApplicationContext(), "Success!", Toast.LENGTH_SHORT, true).show();
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
@@ -86,7 +83,6 @@ public class RegisterActivity extends AppCompatActivity {
         request.setOnErrorListener(new HttpRequest.OnErrorListener() {
             @Override
             public void onError(HttpError error) {
-
                 Toasty.error(getApplicationContext(), "Registration Failed", Toast.LENGTH_LONG, true).show();
                 Log.e("RegisterActivity", error.toString());
             }
@@ -106,10 +102,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
         request.post("http://2doo.ca/api/user/register", json);
 
-
-
-        Intent intent= new Intent(this, LoginActivity.class);
-        startActivity(intent);
+//        Intent intent= new Intent(this, LoginActivity.class);
+//        startActivity(intent);
 
 
     }
