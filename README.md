@@ -6,8 +6,8 @@
 
 ## Developers
 
- - Luan Nguyen 
  - Michael Anetor 
+ - Luan Nguyen 
  - Roman Mbwasi 
  - Deep Desai
 
